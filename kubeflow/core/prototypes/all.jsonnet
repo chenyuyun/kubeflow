@@ -24,7 +24,7 @@ local namespace = import 'param://namespace';
 local cloud = import 'param://cloud';
 
 // TODO(jlewi): Make this a parameter
-local jupyterHubImage = 'gcr.io/kubeflow/jupyterhub:1.0';
+local jupyterHubImage = 'ccr.ccs.tencentyun.com/gcrio-kubeflow/jupyterhub:1.0';
 local diskParam = import 'param://disks';
 
 local diskNames = if diskParam != "null" && std.length(diskParam) > 0 then

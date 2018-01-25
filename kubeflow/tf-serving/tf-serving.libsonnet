@@ -10,7 +10,7 @@ local networkSpec = networkPolicy.mixin.spec;
   parts:: {
     deployment:: {
       local defaults = {
-        image:: "gcr.io/kubeflow/model-server:1.0",
+        image:: "ccr.ccs.tencentyun.com/gcrio-kubeflow/model-server:1.0",
         imagePullPolicy:: "IfNotPresent",
         resources:: {
           "requests": {

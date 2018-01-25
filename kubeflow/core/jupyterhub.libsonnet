@@ -46,7 +46,7 @@ class KubeFormSpawner(KubeSpawner):
 
   @property
   def singleuser_image_spec(self):
-    image = 'gcr.io/kubeflow/tensorflow-notebook-cpu'
+    image = 'ccr.ccs.tencentyun.com/gcrio-kubeflow/tensorflow-notebook-cpu'
     if self.user_options.get('image'):
       image = self.user_options['image']
     return image
@@ -86,7 +86,7 @@ c.JupyterHub.cleanup_servers = False
 ### Spawner Options
 ###################################################
 c.JupyterHub.spawner_class = KubeFormSpawner
-c.KubeSpawner.singleuser_image_spec = 'gcr.io/kubeflow/tensorflow-notebook'
+c.KubeSpawner.singleuser_image_spec = 'ccr.ccs.tencentyun.com/gcrio-kubeflow/tensorflow-notebook'
 c.KubeSpawner.cmd = 'start-singleuser.sh'
 c.KubeSpawner.args = ['--allow-root']
 # First pulls can be really slow, so let's give it a big timeout
