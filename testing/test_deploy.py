@@ -23,8 +23,8 @@ from kubernetes import client as k8s_client
 from kubernetes.client import rest
 from kubernetes.config import incluster_config
 
-from py import test_util
-from py import util
+from kubeflow.testing import test_util
+from kubeflow.testing import util
 
 def _setup_test(api_client, run_label):
   """Create the namespace for the test.
@@ -94,11 +94,11 @@ def setup(args):
 
     # Initialize a ksonnet app.
     app_name = "kubeflow-test"
-    util.run(["ks", "init", app_name,], cwd=args.test_dir, use_print=True)
+    util.run(["ks", "init", app_name,], cwd=args.test_dir)
 
     app_dir = os.path.join(args.test_dir, app_name)
 
-    kubeflow_registry = "github.com/google/kubeflow/tree/master/kubeflow"
+    kubeflow_registry = "github.com/kubeflow/kubeflow/tree/master/kubeflow"
     util.run(["ks", "registry", "add", "kubeflow", kubeflow_registry], cwd=app_dir)
 
     # Install required packages
@@ -114,7 +114,11 @@ def setup(args):
     logging.info("Deleting %s", target_dir)
     shutil.rmtree(target_dir)
 
-    source = os.path.join(args.test_dir, "src", "kubeflow")
+    REPO_ORG = "kubeflow"
+    REPO_NAME = "kubeflow"
+    REGISTRY_PATH = "kubeflow"
+    source = os.path.join(args.test_dir, "src", REPO_ORG, REPO_NAME,
+                          REGISTRY_PATH)
     logging.info("Creating link %s -> %s", target_dir, source)
     os.symlink(source, target_dir)
 
